@@ -76,6 +76,8 @@
   "Navigation": {
     "home": "Home",
     "examples": "Examples",
+    "meetings": "Meetings",
+    "settings": "Settings",
     "login": "Login",
     "logout": "Logout"
   },
