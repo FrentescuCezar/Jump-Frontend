@@ -46,6 +46,18 @@ export async function Navbar({ locale }: NavbarProps) {
           >
             {tNav("examples")}
           </Link>
+          <Link
+            href={`/${locale}/meetings`}
+            className="transition hover:text-foreground"
+          >
+            {tNav("meetings")}
+          </Link>
+          <Link
+            href={`/${locale}/settings/integrations`}
+            className="transition hover:text-foreground"
+          >
+            {tNav("settings")}
+          </Link>
         </nav>
 
         {user ? (
