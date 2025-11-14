@@ -1,0 +1,24 @@
+services:
+  frontend:
+    build:
+      context: ..
+      dockerfile: ./Dockerfile
+    container_name: Jump-Frontend
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - ../.env
+    working_dir: /app
+    networks:
+      - jump-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000 || exit 1"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+      start_period: 30s
+
+networks:
+  jump-network:
+    name: jump-network
+    external: true

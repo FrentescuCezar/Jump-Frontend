@@ -1,0 +1,234 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "Common": {
+    "resources": {
+      "Endpoint": "Endpoint",
+      "Record": "Record",
+      "Service": "Service"
+    },
+    "errors": {
+      "DUPLICATE": "The {resource} already exists.",
+      "NOT_FOUND": "{resource} was not found.",
+      "FORBIDDEN": "You do not have permission.",
+      "UNAUTHORIZED": "You must be logged in.",
+      "VALIDATION": "One or more fields have errors.",
+      "NETWORK_ERROR": "Cannot connect to the server.",
+      "INTERNAL": "Something went wrong.",
+      "BACKEND_URL": "Internal error: backend URL is not configured.",
+      "UNKNOWN_SERVER_ERROR": "Something went wrong. Please try again later.",
+      "SERVICE_UNAVAILABLE": "The {service} service is unavailable."
+    },
+    "fieldErrors": {
+      "REQUIRED": "{field} is required.",
+      "INVALID": "{field} is invalid.",
+      "DUPLICATE": "{field} is already registered.",
+      "PROFANITY": "{field} contains inappropriate language.",
+      "TOO_SHORT": "{field} is too short.",
+      "TOO_LONG": "{field} is too long.",
+      "SELECT": "Please select a {field}"
+    },
+    "toasts": {
+      "success": "Your action was successful.",
+      "error": "There was an error. Please try again."
+    }
+  },
+  "Signup": {
+    "title": "Create your account to join the {brand} program",
+    "button": "Create account",
+    "processing": "Processing…",
+    "chooseBrand": "Choose your brand",
+    "toastSuccess": "Account created successfully!",
+    "termsLabel": "I agree to the <link>Terms of Service</link>",
+    "already": "Already have an account? <link>Sign in</link>",
+    "placeholder": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "your@email.com",
+      "password": "Enter a strong password"
+    },
+    "passwordRequirements": {
+      "minLength": "At least 8 characters",
+      "uppercase": "One uppercase letter",
+      "number": "One number",
+      "specialChar": "One special character (!@#$%^&*)"
+    },
+    "errors": {
+      "invalidPassword": "Password must contain at least one uppercase letter, one number, and one special character (!@#$%^&*)",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "brand": "Brand"
+    }
+  },
+  "Login": {
+    "badge": "Secure login",
+    "title": "Sign in to Jump",
+    "subtitle": "We will redirect you to your organization's Keycloak realm to keep things safe.",
+    "button": "Continue with Keycloak"
+  },
+  "Navigation": {
+    "home": "Home",
+    "examples": "Examples",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "Examples": {
+    "Index": {
+      "eyebrow": "Playground",
+      "title": "Reference implementations for Jump",
+      "subtitle": "Each example is small on purpose so you can copy the pieces you need: server components, server actions, TanStack Query and Zustand wiring.",
+      "server": {
+        "badge": "Pure RSC",
+        "title": "Server insights with streaming fetch",
+        "description": "A server-only route that hits Nest directly, validates with Zod and renders instantly.",
+        "link": "View the insights example"
+      },
+      "client": {
+        "badge": "Client + SA",
+        "title": "TanStack Query + Server Action planner",
+        "description": "A mini timesheet that keeps the Sinapsi token on the server, yet feels instant through caches.",
+        "link": "Open the planner"
+      },
+      "chat": {
+        "badge": "Realtime sockets",
+        "title": "Secure chat + notifications",
+        "description": "Socket.io gateway protected by short-lived tokens and a notification stream that works across the app."
+      },
+      "viewExample": "Open example"
+    },
+    "Insights": {
+      "badge": "Server component",
+      "title": "Team health pulse",
+      "subtitle": "Fetched via an RSC-friendly endpoint and streamed to first paint in under 200 ms.",
+      "updated": "Updated {time}",
+      "summary": {
+        "focus": "Deep work hours",
+        "focusHelper": "Last 21 days across all squads",
+        "contextSwitches": "Context switches",
+        "contextHelper": "Times we touched 2+ projects per day",
+        "avgSession": "Avg. session length",
+        "avgSessionHelper": "Hours per recorded focus block",
+        "streak": "Focus streak",
+        "days": "days",
+        "streakHelper": "Consecutive days with ≥4 logged hours"
+      },
+      "spotlight": {
+        "title": "Spotlight",
+        "subtitle": "Derived from the same DTO the planner uses",
+        "status": {
+          "ahead": "Ahead",
+          "on-track": "On track",
+          "at-risk": "At risk"
+        },
+        "sentiment": "{sentiment}% confidence"
+      },
+      "experiments": {
+        "title": "Experiments in flight",
+        "subtitle": "Small backlog fed by the same backend service",
+        "eta": "ETA {date}",
+        "owner": "Owner: {owner}",
+        "confidence": "Confidence {confidence}%"
+      }
+    },
+    "Planner": {
+      "badge": "TanStack Query + SA",
+      "title": "Focus planner playground",
+      "subtitle": "The cache lives in TanStack, the token lives on the server.",
+      "actions": {
+        "previous": "Previous month",
+        "next": "Next month"
+      },
+      "totals": {
+        "totalHours": "{hours}h logged this range"
+      },
+      "timeline": {
+        "title": "Range overview",
+        "subtitle": "Every day is prefetched via a server action",
+        "empty": "No entries yet for this range.",
+        "refreshing": "Refreshing…",
+        "hours": "{hours}h"
+      },
+      "details": {
+        "title": "Selected day",
+        "hide": "Hide descriptions",
+        "show": "Show descriptions",
+        "empty": "No entries logged for this day."
+      },
+      "templates": {
+        "title": "Templates",
+        "subtitle": "Pin a template to auto-fill the form"
+      },
+      "loading": "Loading…"
+    },
+    "Chat": {
+      "badge": "Realtime sockets",
+      "title": "Secure chat with presence",
+      "subtitle": "Every socket token is minted via a server action and fans out to notifications if the user is away.",
+      "sidebar": {
+        "badge": "Channels",
+        "title": "Rooms",
+        "status": {
+          "online": "Connected",
+          "offline": "Offline"
+        },
+        "empty": "No chat rooms exist yet.",
+        "create": {
+          "button": "New chat",
+          "title": "Create chat room",
+          "subtitle": "Create a public room that anyone can join.",
+          "name": "Room name",
+          "description": "Description",
+          "theme": "Theme color (hex)",
+          "submit": "Create room",
+          "submitting": "Creating…",
+          "toastSuccess": "Chat room created.",
+          "toastError": "Unable to create chat room."
+        }
+      },
+      "room": {
+        "badge": "Live room",
+        "start": "You reached the beginning of the transcript.",
+        "loadHistory": "Load older messages",
+        "loadingHistory": "Loading history…",
+        "typing": "{users} typing…",
+        "placeholder": "Reply as {name}",
+        "send": "Send",
+        "emptyState": "Choose a room on the left to view the conversation.",
+        "errors": {
+          "history": "Couldn't load earlier messages."
+        }
+      }
+    }
+  },
+  "PlannerForm": {
+    "title": "Add focus entry",
+    "subtitle": "Validated with Zod on both the client and the server action.",
+    "fields": {
+      "projectId": "Project",
+      "activityType": "Activity",
+      "hours": "Hours",
+      "description": "Description"
+    },
+    "placeholders": {
+      "project": "Select a project",
+      "activity": "Select activity",
+      "description": "What did you focus on?"
+    },
+    "activities": {
+      "deep-work": "Deep work",
+      "review": "Review",
+      "support": "Support"
+    },
+    "toastSuccess": "Entry saved – cache will refetch automatically.",
+    "saving": "Saving…",
+    "submit": "Save entry",
+    "noProjects": "Project catalog is still loading. The form unlocks once metadata arrives."
+  }
+}

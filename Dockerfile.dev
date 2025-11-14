@@ -1,0 +1,28 @@
+FROM node:24-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apk add --no-cache ca-certificates curl
+
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN corepack enable
+
+# Configure npm to use legacy peer deps (handles React 19 compatibility issues)
+RUN npm config set legacy-peer-deps true
+
+# Expose Next.js port
+EXPOSE 3000
+
+# Copy the entrypoint script
+COPY docker/entrypoint.sh /app/docker/entrypoint.sh
+
+# Make the script executable
+RUN chmod +x /app/docker/entrypoint.sh
+
+# Run the entrypoint script
+CMD ["sh", "/app/docker/entrypoint.sh"]
+
+
