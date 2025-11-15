@@ -12,8 +12,16 @@ const baseUrl = () => {
   return `${env.backendUrl}/calendar`
 }
 
-export async function fetchCalendarEvents() {
-  const response = await authFetch<unknown>(`${baseUrl()}/events`)
+type CalendarWindow = "upcoming" | "past"
+
+export async function fetchCalendarEvents(window: CalendarWindow = "upcoming") {
+  const path =
+    window === "past"
+      ? "/events/past"
+      : window === "upcoming"
+        ? "/events/upcoming"
+        : "/events"
+  const response = await authFetch<unknown>(`${baseUrl()}${path}`)
   return CalendarEventsResponseSchema.parse(response)
 }
 

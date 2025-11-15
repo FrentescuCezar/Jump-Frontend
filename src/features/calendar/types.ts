@@ -29,4 +29,5 @@ export type RecallBotStatus = CalendarEventApi["botStatus"]
 export type CalendarEventsQueryInput = {
   userId: string
   locale: string
+  window?: "upcoming" | "past"
 }
