@@ -17,9 +17,22 @@ export default async function MeetingsPage({ params }: MeetingsPageProps) {
   }
 
   const queryClient = createQueryClient()
-  await queryClient.prefetchQuery(
-    calendarEventsQuery({ userId: session.user.id, locale }),
-  )
+  await Promise.all([
+    queryClient.prefetchQuery(
+      calendarEventsQuery({
+        userId: session.user.id,
+        locale,
+        window: "upcoming",
+      }),
+    ),
+    queryClient.prefetchQuery(
+      calendarEventsQuery({
+        userId: session.user.id,
+        locale,
+        window: "past",
+      }),
+    ),
+  ])
 
   const state = dehydrate(queryClient)
 
