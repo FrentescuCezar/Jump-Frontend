@@ -35,18 +35,24 @@
     }
   },
   "Signup": {
-    "title": "Create your account to join the {brand} program",
+    "title": "Create your account",
     "button": "Create account",
     "processing": "Processing…",
-    "chooseBrand": "Choose your brand",
     "toastSuccess": "Account created successfully!",
     "termsLabel": "I agree to the <link>Terms of Service</link>",
     "already": "Already have an account? <link>Sign in</link>",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInCta": "Sign in with Google or Account",
+    "divider": "Or create a new account",
+    "securedWithKeycloak": "Secured with OAuth2 Keycloak",
+    "terms": "By creating an account, you agree to our Terms of Service and Privacy Policy",
+    "backToHome": "← Back to Home",
     "placeholder": {
       "firstName": "John",
       "lastName": "Doe",
       "email": "your@email.com",
-      "password": "Enter a strong password"
+      "password": "Enter a strong password",
+      "confirmPassword": "Repeat your password"
     },
     "passwordRequirements": {
       "minLength": "At least 8 characters",
@@ -63,8 +69,7 @@
       "lastName": "Last name",
       "email": "Email address",
       "password": "Password",
-      "confirmPassword": "Confirm password",
-      "brand": "Brand"
+      "confirmPassword": "Confirm password"
     }
   },
   "Login": {
