@@ -48,12 +48,14 @@ export const CalendarEventApiSchema = z.object({
 export const CalendarEventsResponseSchema = z.object({
   events: z.array(CalendarEventApiSchema),
   serverTimestamp: z.string(),
+  providerSyncedAt: z.string().nullable().optional(),
 })
 
 export const CalendarEventsDeltaResponseSchema = z.object({
   events: z.array(CalendarEventApiSchema),
   deletedIds: z.array(z.string()),
   serverTimestamp: z.string(),
+  providerSyncedAt: z.string().nullable().optional(),
 })
 
 export type CalendarEventApi = z.infer<typeof CalendarEventApiSchema>
@@ -63,5 +65,3 @@ export type CalendarEventsResponse = z.infer<
 export type CalendarEventsDeltaResponse = z.infer<
   typeof CalendarEventsDeltaResponseSchema
 >
-
-

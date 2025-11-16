@@ -38,6 +38,11 @@ export const ChatNotificationSchema = z.object({
   body: z.string(),
   roomSlug: z.string().nullable(),
   messageId: z.string().nullable(),
+  payload: z
+    .record(z.string(), z.any())
+    .nullable()
+    .optional()
+    .default(null),
   readAt: z.string().nullable(),
   createdAt: z.string(),
 })

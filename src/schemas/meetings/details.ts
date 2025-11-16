@@ -48,6 +48,7 @@ export const SocialPostSchema = z.object({
   automationId: z.string().nullable().optional(),
   publishedAt: z.string().nullable().optional(),
   error: z.string().nullable().optional(),
+  externalUrl: z.string().nullable().optional(),
 })
 
 export const RecallBotSchema = z
@@ -70,6 +71,19 @@ export const MeetingDetailsSchema = z.object({
   socialPosts: z.array(SocialPostSchema),
 })
 
+export const MeetingActivitySchema = z.object({
+  viewerRole: z.enum(["owner", "guest"]),
+  details: MeetingDetailsSchema,
+  shareCount: z.number().int().nonnegative().optional(),
+})
+
+export const MeetingShareSchema = z.object({
+  id: z.string(),
+  email: z.string().email(),
+  invitedByUserId: z.string().nullable().optional(),
+  createdAt: z.string(),
+})
+
 export const MeetingPreferenceSchema = z.object({
   leadMinutes: z.number().int().min(1).max(60),
 })
@@ -79,3 +93,5 @@ export type MeetingInsight = z.infer<typeof MeetingInsightSchema>
 export type MeetingMedia = z.infer<typeof MeetingMediaSchema>
 export type SocialPost = z.infer<typeof SocialPostSchema>
 export type MeetingPreference = z.infer<typeof MeetingPreferenceSchema>
+export type MeetingActivity = z.infer<typeof MeetingActivitySchema>
+export type MeetingShare = z.infer<typeof MeetingShareSchema>
