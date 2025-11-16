@@ -1,0 +1,11 @@
+[build]
+# Pass these env names into `docker build` as --build-arg <NAME>=<value>
+args = [
+  "NEXTAUTH_URL",
+  "KEYCLOAK_BASE_URL",
+  "NEXT_PUBLIC_KEYCLOAK_URL",
+  "NEXT_PUBLIC_KEYCLOAK_REALM",
+  "NEXT_PUBLIC_KEYCLOAK_CLIENT_ID",
+  "NEXT_PUBLIC_SUPABASE_URL",
+  "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+]
