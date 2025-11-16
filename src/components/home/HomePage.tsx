@@ -535,7 +535,7 @@ export default function HomePage() {
 
       <footer className="relative z-10 border-t border-white/10 mt-20 py-8">
         <div className="container mx-auto px-6 lg:px-12 text-center text-gray-400 text-sm">
-          © 2025 Jump. All rights reserved.
+          © 2025 Frentescu Cezar-Augustin. All rights reserved.
         </div>
       </footer>
     </div>
