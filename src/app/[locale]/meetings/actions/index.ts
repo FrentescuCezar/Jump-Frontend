@@ -1,2 +1,3 @@
-export { getCalendarEventsAction } from "./getCalendarEventsAction"
-export { getCalendarEventsDeltaSyncAction } from "./getCalendarEventsDeltaSyncAction"
+export * from "./getCalendarEventsAction"
+export * from "./getCalendarEventsDeltaSyncAction"
+export * from "./regenerateContent"
