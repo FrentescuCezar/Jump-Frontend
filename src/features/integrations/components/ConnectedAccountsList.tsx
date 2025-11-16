@@ -4,7 +4,13 @@ import { useTransition, useState, useEffect } from "react"
 import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import type { ConnectedAccount } from "../types"
 import { disconnectAccountAction } from "../actions/disconnectAccountAction"
 
@@ -41,9 +47,7 @@ export function ConnectedAccountsList({
           <CardTitle className="text-lg">{emptyTitle}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">
-            {emptyDescription}
-          </p>
+          <p className="text-sm text-muted-foreground">{emptyDescription}</p>
         </CardContent>
       </Card>
     )
@@ -62,12 +66,16 @@ export function ConnectedAccountsList({
                 <Badge variant="secondary">{account.provider}</Badge>
                 {account.lastSyncedAt && (
                   <Badge variant="outline">
-                    Synced {isMounted ? format(new Date(account.lastSyncedAt), "PPpp") : ""}
+                    Synced{" "}
+                    {isMounted
+                      ? format(new Date(account.lastSyncedAt), "PPpp")
+                      : ""}
                   </Badge>
                 )}
                 {account.expiresAt && (
                   <Badge variant="outline">
-                    Expires {isMounted ? format(new Date(account.expiresAt), "PP") : ""}
+                    Expires{" "}
+                    {isMounted ? format(new Date(account.expiresAt), "PP") : ""}
                   </Badge>
                 )}
               </div>
@@ -77,7 +85,10 @@ export function ConnectedAccountsList({
               {metadataLines.map((line) => (
                 <p key={line}>{line}</p>
               ))}
-              <p>Linked {isMounted ? format(new Date(account.linkedAt), "PPpp") : ""}</p>
+              <p>
+                Linked{" "}
+                {isMounted ? format(new Date(account.linkedAt), "PPpp") : ""}
+              </p>
             </CardContent>
             <CardFooter>
               <Button
@@ -134,4 +145,3 @@ function buildMetadataLines(metadata: AccountMetadata) {
   }
   return lines
 }
-
