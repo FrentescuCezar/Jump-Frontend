@@ -15,7 +15,7 @@ export default async function AutomationsPage({
   const [{ locale }, session] = await Promise.all([params, getSession()])
 
   if (!session?.user?.id) {
-    redirect(`/${locale}/login`)
+    redirect(`/${locale}/signup`)
   }
 
   const queryClient = createQueryClient()
@@ -24,14 +24,7 @@ export default async function AutomationsPage({
   const state = dehydrate(queryClient)
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10 lg:py-14">
-      <div className="mb-6 flex flex-col gap-2">
-        <p className="text-sm text-primary">AI automations</p>
-        <h1 className="text-3xl font-semibold">Automation builder</h1>
-        <p className="text-sm text-muted-foreground">
-          Control how Jump drafts follow-ups for each social channel.
-        </p>
-      </div>
+    <main className="p-0">
       <HydrationBoundary state={state}>
         <AutomationsClient locale={locale} />
       </HydrationBoundary>
