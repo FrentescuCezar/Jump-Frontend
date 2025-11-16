@@ -3,11 +3,9 @@
 import { useCallback, useEffect, useMemo, useRef } from "react"
 import { io, type Socket } from "socket.io-client"
 import { env } from "@/config/env"
-import type {
-  ChatMessage,
-  ChatNotification,
-} from "@/schemas/examples/chat"
+import type { ChatMessage, ChatNotification } from "@/schemas/examples/chat"
 import { useChatStore, useNotificationStore } from "../store"
+import { toAppNotification } from "@/features/notifications/utils/mapNotification"
 
 type ClientToServerEvents = {
   "chat:join": (roomSlug: string) => void
@@ -104,7 +102,7 @@ export function useChatSocket(params: {
       setPresence(userId, status)
     })
     socket.on("notification:new", (notification) => {
-      upsertNotification(notification)
+      upsertNotification(toAppNotification(notification))
     })
     socket.on("chat:read", ({ roomSlug, updates }) => {
       updateReadReceipts(roomSlug, updates)
