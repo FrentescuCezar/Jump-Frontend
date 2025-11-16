@@ -16,12 +16,16 @@ type CalendarEventsListProps = {
   events: CalendarEvent[]
   locale: string
   queryKey: QueryKey
+  showDetailLink?: boolean
+  showNotetakerToggle?: boolean
 }
 
 export function CalendarEventsList({
   events,
   locale,
   queryKey,
+  showDetailLink = false,
+  showNotetakerToggle = true,
 }: CalendarEventsListProps) {
   const queryClient = useQueryClient()
   const [optimisticEvents, toggle] = useOptimistic(
@@ -86,7 +90,7 @@ export function CalendarEventsList({
                   Bot: {event.botStatus.toLowerCase()}
                 </Badge>
               )}
-              {event.notetakerEnabled && (
+              {event.notetakerEnabled && event.meetingUrl && (
                 <Badge variant="outline" className="text-xs uppercase">
                   Notetaker on
                 </Badge>
@@ -125,19 +129,21 @@ export function CalendarEventsList({
               </div>
             )}
 
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="text-sm font-medium">Recall notetaker</p>
-                <p className="text-sm text-muted-foreground">
-                  Automatically joins{" "}
-                  {event.notetakerEnabled ? "this" : "the next"} occurrence.
-                </p>
+            {showNotetakerToggle && event.meetingUrl && (
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm font-medium">Recall notetaker</p>
+                  <p className="text-sm text-muted-foreground">
+                    Automatically joins{" "}
+                    {event.notetakerEnabled ? "this" : "the next"} occurrence.
+                  </p>
+                </div>
+                <Switch
+                  checked={event.notetakerEnabled}
+                  onCheckedChange={(checked) => handleToggle(event.id, checked)}
+                />
               </div>
-              <Switch
-                checked={event.notetakerEnabled}
-                onCheckedChange={(checked) => handleToggle(event.id, checked)}
-              />
-            </div>
+            )}
 
             <div className="flex flex-wrap gap-3">
               {event.meetingUrl && (
@@ -148,6 +154,13 @@ export function CalendarEventsList({
                     rel="noopener noreferrer"
                   >
                     Join call
+                  </Link>
+                </Button>
+              )}
+              {showDetailLink && (
+                <Button asChild variant="ghost" size="sm">
+                  <Link href={`/${locale}/meetings/${event.id}`}>
+                    View details
                   </Link>
                 </Button>
               )}

@@ -36,7 +36,7 @@ function TooltipTrigger({
 
 function TooltipContent({
   className,
-  sideOffset = 0,
+  sideOffset = 8,
   children,
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Content>) {
@@ -46,13 +46,13 @@ function TooltipContent({
         data-slot="tooltip-content"
         sideOffset={sideOffset}
         className={cn(
-          'bg-foreground text-background animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md px-3 py-1.5 text-xs text-balance',
+          'relative isolate z-50 w-fit max-w-xs origin-(--radix-tooltip-content-transform-origin) rounded-2xl border border-white/10 bg-gradient-to-br from-[#1b103f]/90 via-[#0a031b]/95 to-[#010107]/95 px-4 py-2.5 text-xs text-white/95 shadow-[0_35px_65px_rgba(1,2,12,0.85)] ring-1 ring-white/5 backdrop-blur-3xl animate-in fade-in-0 zoom-in-95 text-balance data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
           className,
         )}
         {...props}
       >
         {children}
-        <TooltipPrimitive.Arrow className="bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
+        <TooltipPrimitive.Arrow className="drop-shadow-[0_12px_28px_rgba(1,2,12,0.65)] fill-[#1b103f]/80" />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   )

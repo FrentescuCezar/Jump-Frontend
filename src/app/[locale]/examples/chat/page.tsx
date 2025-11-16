@@ -14,7 +14,7 @@ export default async function ChatPage({ params }: ChatPageProps) {
   const t = await getTranslations("Examples.Chat")
 
   if (!session?.user?.id) {
-    redirect(`/${locale}/login`)
+    redirect(`/${locale}/signup`)
   }
 
   const rooms = await fetchChatRooms()

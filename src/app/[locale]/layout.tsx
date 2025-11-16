@@ -9,6 +9,7 @@ import "../globals.css"
 import { Navbar } from "@/components/navigation/Navbar"
 import { QueryProvider } from "@/components/providers/QueryProvider"
 import { ToastContainer } from "react-toastify"
+import { CalendarBackgroundProcess } from "@/features/calendar/components/CalendarBackgroundProcess"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <QueryProvider>
             <Navbar locale={locale} />
+            <CalendarBackgroundProcess locale={locale} />
             {children}
             <ToastContainer position="bottom-right" />
           </QueryProvider>

@@ -113,6 +113,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: #0a0118;
   }
 }
 
@@ -135,7 +136,11 @@
   right: -5%;
   width: 400px;
   height: 400px;
-  background: linear-gradient(135deg, rgba(0, 122, 77, 0.03) 0%, rgba(178, 223, 219, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 122, 77, 0.03) 0%,
+    rgba(178, 223, 219, 0.05) 100%
+  );
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   animation: float 20s ease-in-out infinite;
 }
@@ -147,7 +152,11 @@
   left: -5%;
   width: 350px;
   height: 350px;
-  background: linear-gradient(135deg, rgba(178, 223, 219, 0.04) 0%, rgba(0, 122, 77, 0.02) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(178, 223, 219, 0.04) 0%,
+    rgba(0, 122, 77, 0.02) 100%
+  );
   border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
   animation: float 25s ease-in-out infinite reverse;
 }
@@ -165,18 +174,36 @@
   }
 }
 /* --- prevent layout shift when Radix modals lock scroll --- */
-html,
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 body {
-  /* Always show scrollbar track area */
-  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #0a0118;
 }
 
 body[data-radix-scroll-lock],
-html[data-radix-scroll-lock],
-body[style*="overflow: hidden"],
-html[style*="overflow: hidden"] {
+html[data-radix-scroll-lock] {
   /* Keep scrollbar track reserved, effectively disables scrolling but layout width stays identical */
   overflow-y: scroll !important;
-  position: fixed;        /* prevent scroll but don't remove scrollbar */
-  width: 100%;            /* avoid tiny width expansion from fixed positioning */
+  position: fixed; /* prevent scroll but don't remove scrollbar */
+  width: 100%; /* avoid tiny width expansion from fixed positioning */
+}
+
+/* Glassmorphism effects for homepage */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-mini {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }

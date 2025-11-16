@@ -4,6 +4,7 @@ import {
   CalendarEventsDeltaResponseSchema,
   CalendarEventsResponseSchema,
 } from "@/schemas/calendar/events"
+import type { CalendarSyncSummary } from "./types"
 
 const baseUrl = () => {
   if (!env.backendUrl) {
@@ -12,9 +13,21 @@ const baseUrl = () => {
   return `${env.backendUrl}/calendar`
 }
 
-export async function fetchCalendarEvents() {
-  const response = await authFetch<unknown>(`${baseUrl()}/events`)
-  return CalendarEventsResponseSchema.parse(response)
+type CalendarWindow = "upcoming" | "past"
+
+export async function fetchCalendarEvents(window: CalendarWindow = "upcoming") {
+  const path =
+    window === "past"
+      ? "/events/past"
+      : window === "upcoming"
+        ? "/events/upcoming"
+        : "/events"
+  const response = await authFetch<unknown>(`${baseUrl()}${path}`)
+  const parsed = CalendarEventsResponseSchema.parse(response)
+  return {
+    ...parsed,
+    providerSyncedAt: parsed.providerSyncedAt ?? null,
+  }
 }
 
 export async function fetchCalendarEventsDelta(updatedSince: string) {
@@ -22,5 +35,15 @@ export async function fetchCalendarEventsDelta(updatedSince: string) {
   url.searchParams.set("updatedSince", updatedSince)
 
   const response = await authFetch<unknown>(url.toString())
-  return CalendarEventsDeltaResponseSchema.parse(response)
+  const parsed = CalendarEventsDeltaResponseSchema.parse(response)
+  return {
+    ...parsed,
+    providerSyncedAt: parsed.providerSyncedAt ?? null,
+  }
+}
+
+export async function syncCalendarNow(): Promise<CalendarSyncSummary> {
+  return authFetch<CalendarSyncSummary>(`${baseUrl()}/sync-now`, {
+    method: "POST",
+  })
 }

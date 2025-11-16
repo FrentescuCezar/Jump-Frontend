@@ -12,7 +12,7 @@ services:
     volumes:
       - ..:/app
       - frontend-node-modules:/app/node_modules
-      - ../.next:/app/.next
+      - frontend-next:/app/.next
     networks:
       - jump-network
     healthcheck:
@@ -24,6 +24,7 @@ services:
 
 volumes:
   frontend-node-modules:
+  frontend-next:
 
 networks:
   jump-network:

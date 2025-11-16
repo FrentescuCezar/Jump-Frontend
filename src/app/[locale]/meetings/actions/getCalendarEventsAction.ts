@@ -6,12 +6,14 @@ import { formatMeetingTimeRange } from "@/features/calendar/utils/formatMeetingT
 
 type GetCalendarEventsActionInput = {
   locale: string
+  window?: "upcoming" | "past"
 }
 
 export async function getCalendarEventsAction(
   input: GetCalendarEventsActionInput,
 ): Promise<CalendarEventsQueryResult> {
-  const response = await fetchCalendarEvents()
+  const window = input.window ?? "upcoming"
+  const response = await fetchCalendarEvents(window)
   return {
     events: response.events.map((event) => ({
       ...event,

@@ -4,6 +4,7 @@ export const calendarEventsKey = (input: CalendarEventsQueryInput) => [
   "calendar-events",
   input.userId,
   input.locale,
+  input.window ?? "upcoming",
 ]
 
 

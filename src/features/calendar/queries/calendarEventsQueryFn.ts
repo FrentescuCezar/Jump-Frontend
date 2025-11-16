@@ -14,8 +14,14 @@ export async function calendarEventsQueryFn(
   input: CalendarEventsQueryInput,
   queryClient?: QueryClient,
 ): Promise<CalendarEventsQueryResult> {
+  const window = input.window ?? "upcoming"
+
+  if (window === "past") {
+    return getCalendarEventsAction({ locale: input.locale, window })
+  }
+
   if (!queryClient) {
-    return getCalendarEventsAction({ locale: input.locale })
+    return getCalendarEventsAction({ locale: input.locale, window })
   }
 
   const cached = queryClient.getQueryData<CalendarEventsQueryResult>(
@@ -23,7 +29,7 @@ export async function calendarEventsQueryFn(
   )
 
   if (!cached?.serverTimestamp) {
-    return getCalendarEventsAction({ locale: input.locale })
+    return getCalendarEventsAction({ locale: input.locale, window })
   }
 
   try {
@@ -38,6 +44,6 @@ export async function calendarEventsQueryFn(
       "Calendar delta sync failed, falling back to full fetch",
       error,
     )
-    return getCalendarEventsAction({ locale: input.locale })
+    return getCalendarEventsAction({ locale: input.locale, window })
   }
 }

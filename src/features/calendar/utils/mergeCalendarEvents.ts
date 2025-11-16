@@ -24,7 +24,7 @@ export function mergeCalendarEvents(
   return {
     events,
     serverTimestamp: delta.serverTimestamp,
+    providerSyncedAt:
+      delta.providerSyncedAt ?? current.providerSyncedAt ?? null,
   }
 }
-
-
