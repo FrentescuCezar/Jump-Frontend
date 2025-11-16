@@ -1,11 +1,8 @@
 "use client"
 
 import { create } from "zustand"
-import type {
-  ChatMessage,
-  ChatNotification,
-  ChatRoom,
-} from "@/schemas/examples/chat"
+import type { ChatMessage, ChatRoom } from "@/schemas/examples/chat"
+import type { AppNotification } from "@/features/notifications/types"
 
 type PresenceStatus = "online" | "away"
 type MessageStatus = "pending" | "confirmed"
@@ -208,9 +205,9 @@ export const useChatStore = create<ChatState>((set) => ({
 }))
 
 type NotificationState = {
-  notifications: ChatNotification[]
-  setNotifications: (items: ChatNotification[]) => void
-  upsertNotification: (notification: ChatNotification) => void
+  notifications: AppNotification[]
+  setNotifications: (items: AppNotification[]) => void
+  upsertNotification: (notification: AppNotification) => void
   markAsRead: (notificationId: string) => void
 }
 
