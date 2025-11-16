@@ -1,4 +1,8 @@
-import type { MeetingDetails } from "@/schemas/meetings/details"
+import type {
+  MeetingActivity,
+  MeetingDetails,
+  MeetingShare,
+} from "@/schemas/meetings/details"
 
 export type MeetingDetailsQueryInput = {
   meetingId: string
@@ -7,4 +11,13 @@ export type MeetingDetailsQueryInput = {
 }
 
 export type MeetingDetailsQueryResult = MeetingDetails
+
+export type MeetingActivityQueryInput = {
+  meetingId: string
+  viewerId?: string | null
+}
+
+export type MeetingActivityQueryResult = MeetingActivity
+
+export type MeetingShareList = MeetingShare[]
 
