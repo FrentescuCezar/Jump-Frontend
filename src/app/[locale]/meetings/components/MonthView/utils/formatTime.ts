@@ -10,3 +10,4 @@ export function formatTime(startTime: string): string {
   return `${displayHours}:${minutes.toString().padStart(2, "0")}${period}`
 }
 
+

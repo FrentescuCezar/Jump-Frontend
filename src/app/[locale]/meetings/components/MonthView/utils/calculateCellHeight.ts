@@ -10,3 +10,4 @@ export function calculateCellHeight(eventCount: number): number {
   )
 }
 
+

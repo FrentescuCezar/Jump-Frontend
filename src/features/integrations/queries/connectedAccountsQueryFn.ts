@@ -5,3 +5,4 @@ export async function connectedAccountsQueryFn(): Promise<ConnectedAccount[]> {
   return fetchConnectedAccounts()
 }
 
+

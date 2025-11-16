@@ -16,3 +16,4 @@ export function formatTimeRange(startTime: string, endTime: string | null | unde
   return `${formatSingleTime(start)} - ${formatSingleTime(end)}`
 }
 
+

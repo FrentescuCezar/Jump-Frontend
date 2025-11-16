@@ -17,3 +17,4 @@ export async function regenerateContentAction(input: RegenerateContentInput) {
   revalidatePath(`/${input.locale}/meetings`)
 }
 
+

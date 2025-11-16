@@ -11,3 +11,4 @@ export const connectedAccountsQuery = (queryClient?: QueryClient) => ({
   ...connectedAccountsQueryConfig,
 })
 
+

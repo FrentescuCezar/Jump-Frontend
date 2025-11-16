@@ -12,3 +12,4 @@ export function getCumulativeTop(hour: number, rowHeights: number[]): number {
   return top
 }
 
+

@@ -11,3 +11,4 @@ export function getDuration(
   return (end.getTime() - start.getTime()) / (1000 * 60 * 60) // hours
 }
 
+

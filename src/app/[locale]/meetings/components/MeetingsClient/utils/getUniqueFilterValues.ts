@@ -39,3 +39,4 @@ export function getUniqueEmails(events: CalendarEvent[]): string[] {
   return Array.from(emails).sort()
 }
 
+

@@ -16,3 +16,4 @@ export const BOT_STATUS_COLORS = {
 
 export const BOT_STATUS_OPACITY = "20" // Opacity for bot icon fill (hex)
 
+

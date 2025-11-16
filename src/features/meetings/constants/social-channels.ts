@@ -47,3 +47,4 @@ export const SOCIAL_POST_STATUS_META: Record<
   FAILED: { label: "Failed", badgeClass: "bg-red-500/20 text-red-100" },
 }
 
+

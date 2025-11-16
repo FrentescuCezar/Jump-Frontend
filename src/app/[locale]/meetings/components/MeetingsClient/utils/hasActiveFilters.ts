@@ -29,3 +29,4 @@ export function countActiveFilters(filters: MeetingsFilters): number {
   ].reduce((a, b) => a + b, 0)
 }
 
+

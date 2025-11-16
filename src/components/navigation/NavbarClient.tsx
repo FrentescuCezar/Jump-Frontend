@@ -69,12 +69,7 @@ export function NavbarClient({
           >
             {tNav("meetings")}
           </Link>
-          <Link
-            href={resolveHref(`/${locale}/examples/insights`)}
-            className="text-gray-300 transition-colors hover:text-purple-400"
-          >
-            {tNav("examples")}
-          </Link>
+
           <Link
             href={resolveHref(`/${locale}/settings/integrations`)}
             className="text-gray-300 transition-colors hover:text-purple-400"

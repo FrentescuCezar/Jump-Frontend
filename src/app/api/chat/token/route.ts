@@ -5,3 +5,4 @@ export async function GET() {
   const token = await requestChatToken()
   return NextResponse.json({ token })
 }
+

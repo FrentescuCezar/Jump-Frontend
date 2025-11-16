@@ -9,3 +9,4 @@ export function formatHour(hour: number): string {
   return `${displayHour}:${m.toString().padStart(2, "0")} ${period}`
 }
 
+
