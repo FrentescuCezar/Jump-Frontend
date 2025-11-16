@@ -17,7 +17,7 @@ export default async function PlannerPage({ params }: PlannerPageProps) {
   const [session, { locale }] = await Promise.all([getSession(), params])
 
   if (!session?.user?.id) {
-    redirect(`/${locale}/login`)
+    redirect(`/${locale}/signup`)
   }
 
   const today = new Date()
