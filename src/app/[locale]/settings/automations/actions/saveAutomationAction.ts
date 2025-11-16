@@ -1,6 +1,5 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
 import { saveAutomation } from "@/features/automations/api"
 
 type SaveAutomationActionInput = {
@@ -20,8 +19,6 @@ export async function saveAutomationAction(input: SaveAutomationActionInput) {
     promptTemplate: input.promptTemplate,
     isEnabled: input.isEnabled,
   })
-
-  revalidatePath(`/${input.locale}/settings/automations`)
 
   return automation
 }
