@@ -66,7 +66,6 @@ export const SignupSchema = z
         { message: "invalidPassword" },
       ),
     confirmPassword: z.string({ message: "REQUIRED" }),
-    brand: z.string({ message: "REQUIRED" }).min(1, { message: "SELECT" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "passwordMismatch",

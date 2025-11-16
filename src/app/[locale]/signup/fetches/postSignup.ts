@@ -11,7 +11,6 @@ export interface SignupDTO {
   lastName?: string
   email: string
   password: string
-  brand: string
 }
 
 /**

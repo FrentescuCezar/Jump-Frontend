@@ -21,7 +21,6 @@ export async function signupAction(
       lastName: validation.data.lastName,
       email: validation.data.email,
       password: validation.data.password,
-      brand: validation.data.brand,
     })
 
     return success(values)
