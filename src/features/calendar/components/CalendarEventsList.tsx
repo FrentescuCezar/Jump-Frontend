@@ -16,16 +16,16 @@ type CalendarEventsListProps = {
   events: CalendarEvent[]
   locale: string
   queryKey: QueryKey
-  showNotetakerToggle?: boolean
   showDetailLink?: boolean
+  showNotetakerToggle?: boolean
 }
 
 export function CalendarEventsList({
   events,
   locale,
   queryKey,
-  showNotetakerToggle = true,
   showDetailLink = false,
+  showNotetakerToggle = true,
 }: CalendarEventsListProps) {
   const queryClient = useQueryClient()
   const [optimisticEvents, toggle] = useOptimistic(
@@ -40,8 +40,8 @@ export function CalendarEventsList({
   const [isPending, startTransition] = useTransition()
 
   const handleToggle = (eventId: string, enabled: boolean) => {
+    toggle({ eventId, enabled })
     startTransition(async () => {
-      toggle({ eventId, enabled })
       try {
         await toggleNotetakerAction({ eventId, enabled, locale })
         await queryClient.invalidateQueries({ queryKey })
@@ -90,7 +90,7 @@ export function CalendarEventsList({
                   Bot: {event.botStatus.toLowerCase()}
                 </Badge>
               )}
-              {event.notetakerEnabled && (
+              {event.notetakerEnabled && event.meetingUrl && (
                 <Badge variant="outline" className="text-xs uppercase">
                   Notetaker on
                 </Badge>
@@ -129,7 +129,7 @@ export function CalendarEventsList({
               </div>
             )}
 
-            {showNotetakerToggle && (
+            {showNotetakerToggle && event.meetingUrl && (
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="text-sm font-medium">Recall notetaker</p>
@@ -158,7 +158,7 @@ export function CalendarEventsList({
                 </Button>
               )}
               {showDetailLink && (
-                <Button asChild variant="secondary" size="sm">
+                <Button asChild variant="ghost" size="sm">
                   <Link href={`/${locale}/meetings/${event.id}`}>
                     View details
                   </Link>
