@@ -74,12 +74,8 @@ export async function fetchNotifications() {
     })
     return z.array(ChatNotificationSchema).parse(response)
   } catch (error) {
-    // Handle network errors and authentication errors gracefully
-    if (error instanceof ApiError) {
-      if (error.status === 0 || error.status === 401 || error.status === 403) {
-        // Network error or unauthorized - return empty array
-        return []
-      }
+    if (error instanceof ApiError && error.status === 0) {
+      return []
     }
     throw error
   }

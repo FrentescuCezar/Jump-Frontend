@@ -9,9 +9,7 @@ type NavbarProps = {
 
 export async function Navbar({ locale }: NavbarProps) {
   const session = await getSession()
-  // Only fetch notifications if session is valid and has no errors
-  const notifications =
-    session?.user?.id && !session?.error ? await fetchNotifications() : []
+  const notifications = session?.user?.id ? await fetchNotifications() : []
   const user = session?.user
   const keycloakBaseUrl = env.keycloak.baseUrl?.replace(/\/$/, "")
   const keycloakRealm = env.keycloak.realm

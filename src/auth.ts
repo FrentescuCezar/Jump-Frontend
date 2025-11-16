@@ -61,40 +61,10 @@ const refreshAccessToken = async (token: JWT): Promise<JWT> => {
       },
     )
 
-    let refreshed: any
-    try {
-      const responseText = await response.text()
-      try {
-        refreshed = JSON.parse(responseText)
-      } catch (parseError) {
-        // If response is not JSON, create a structured error
-        throw {
-          error: "parse_error",
-          error_description: `Failed to parse response: ${responseText.substring(0, 200)}`,
-          status: response.status,
-          statusText: response.statusText,
-        }
-      }
-    } catch (textError: any) {
-      // If we can't even read the response text
-      if (textError?.error === "parse_error") {
-        throw textError
-      }
-      throw {
-        error: "response_error",
-        error_description: "Unable to read response",
-        status: response.status,
-        statusText: response.statusText,
-        originalError: textError?.message,
-      }
-    }
+    const refreshed = await response.json()
 
     if (!response.ok) {
-      throw {
-        ...refreshed,
-        status: response.status,
-        statusText: response.statusText,
-      }
+      throw refreshed
     }
 
     return {
@@ -107,15 +77,10 @@ const refreshAccessToken = async (token: JWT): Promise<JWT> => {
       error: undefined,
     }
   } catch (error: any) {
-    // If refresh token is invalid (session expired), handle silently
-    // This is expected behavior when user session expires
+    console.error("Failed to refresh Keycloak token", error)
+
+    // If refresh token is invalid, clear it to force re-authentication
     if (error?.error === "invalid_grant") {
-      // Only log if it's not the common "Session not active" case
-      if (error?.error_description !== "Session not active") {
-        console.warn("Keycloak refresh token invalid", {
-          error_description: error?.error_description,
-        })
-      }
       return {
         ...token,
         accessToken: undefined,
@@ -123,33 +88,6 @@ const refreshAccessToken = async (token: JWT): Promise<JWT> => {
         error: "RefreshAccessTokenError",
       }
     }
-
-    // Log detailed error information for unexpected errors
-    const errorDetails = {
-      message: error?.message || "Unknown error",
-      name: error?.name,
-      error: error?.error,
-      error_description: error?.error_description,
-      status: error?.status,
-      statusText: error?.statusText,
-      stack: error?.stack,
-      // For network errors, include additional info
-      cause: error?.cause,
-    }
-    
-    // Determine error type for better debugging
-    const errorType = error?.error 
-      ? "keycloak_error" 
-      : error?.name === "TypeError" || error?.message?.includes("fetch")
-      ? "network_error"
-      : "unknown_error"
-    
-    console.error("Failed to refresh Keycloak token", {
-      errorType,
-      error: errorDetails,
-      hasRefreshToken: !!token.refreshToken,
-      keycloakIssuer,
-    })
 
     return {
       ...token,
